@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "root",
+    "password": "password",
+    "database": "ecommerce",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "root",
+    "password": "password",
+    "database": "ecommerce",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "root",
+    "password": "password",
+    "database": "ecommerce",
+    "host": "localhost",
+    "dialect": "postgres"
+  }
+}
