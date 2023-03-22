@@ -1,6 +1,6 @@
 import React from "react";
 // import chakra ui components
-import { Box, Flex, Heading, Text, Button } from "@chakra-ui/react";
+import { Box, Flex, Heading, Text, Button, Center } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
 
@@ -57,8 +57,8 @@ class SignIn extends React.Component {
 
   render() {
     return (
-      <Flex direction="column" align="center" justify="center" h="100vh">
-        <Box w="400px" p={4} borderWidth="1px" borderRadius="lg">
+      <Flex direction="column" align="center" justify="center" h="100vh" >
+        <Box w="400px" p={4} borderWidth="1px" borderRadius="lg" >
           <Heading as="h1" size="lg" textAlign="center" mb={4}>
             Sign In
           </Heading>
@@ -67,31 +67,29 @@ class SignIn extends React.Component {
           </Text>
           <form onSubmit={this.handleSubmit}>
             <Box mb={4}>
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email">Email: </label><br/>
               <input type="email" name="email" id="email"
                onChange={(e) => { this.setState({ email: e.target.value }); }}
               />
             </Box>
             <Box mb={4}>
-              <label htmlFor="password">Password</label>
-              <input type="password" name="password" id="password" 
+              <label htmlFor="password">Password: </label><br />
+              <input type="password" name="password" id="password"  
                 onChange={(e) => { this.setState({ password: e.target.value }); }}
               />
             </Box>
             <Box mb={4}>
-              <label htmlFor="remember">Remember me</label>
-              <input type="checkbox" name="remember" id="remember" />
-            </Box>
-            <Box mb={4}>
               <Link to="/forgot-password">Forgot password?</Link>
             </Box>
-            <Box mb={4}>
-              <Button type="submit" colorScheme="teal" w="100%" >
-                <Text>
-                  Sign In
-                </Text>
+            <Center spacing={40} direction="row" alignItems="center">
+              <Button type="submit" colorScheme="green" borderRadius="20px"  backgroundColor="green" >
+                <Center h="100%">
+                  <Text color="white" fontSize="20" paddingInline={12} margin={8}  >
+                    Sign In
+                  </Text>  
+                </Center>
               </Button>
-            </Box>
+            </Center>
           </form>
           <Text textAlign="center">
             Don't have an account? <Link to="/signup">Sign Up</Link>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Flex, Heading, Text, Button, Spacer } from "@chakra-ui/react";
+import { Box, Flex, Heading, Text, Button, Spacer, Stack, Center, Input } from "@chakra-ui/react";
 // import account and lock icons from chakra ui
 import { LockIcon, AtSignIcon } from "@chakra-ui/icons";
 
@@ -72,27 +72,29 @@ class SignUp extends React.Component {
             Sign up to your account
           </Text>
           <form>
-            <Box mb={4}>
-              <input type="text" name="first_name" id="first_name" placeholder="First Name" />
-              <input type="text" name="last_name" id="last_name" placeholder="Last Name"/>
-            </Box>
-            <Box mb={4}>
-              <input type="text" name="username" id="username" placeholder="username" />
-              <input type="email" name="email" id="email" placeholder="Email"/>
-            </Box>
-            <Box mb={4}>
-              <input type="password" name="password" id="password"  placeholder="Password"/>
-              <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" />
-            </Box>
-            <Box mb={4}>
-              <Button type="submit" colorScheme="teal" w="100%">
-                <LockIcon mr={2} />
-                <Text>
-                  Create Account
-                </Text>
-              </Button>
-            </Box>
-          </form>
+            <Stack direction="column" spacing={20}>
+              <Stack spacing={40} direction="row" alignItems="center">
+                <input type="text" name="first_name" id="first_name" placeholder="First Name" />
+                <input type="text" name="last_name" id="last_name" placeholder="Last Name" />          
+              </Stack>
+              <Stack spacing={40} direction="row" alignItems="center">
+                <input type="text" name="username" id="username" placeholder="username" />
+                <input type="email" name="email" id="email" placeholder="Email"/>
+              </Stack>
+              <Stack spacing={40} direction="row" alignItems="center">
+                <input type="password" name="password" id="password"  placeholder="Password"/>
+                <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" />
+              </Stack>
+              <Center spacing={40} direction="row" alignItems="center">
+                <Button type="submit" colorScheme="green" borderRadius="20px" leftIcon={<LockIcon color="white" />} backgroundColor="green" >
+                  <Text color="white">
+                    Create Account
+                  </Text>
+                </Button>
+              </Center>
+            
+            </Stack>
+            </form>
           <Text textAlign="center">
             Already have an account? <Link to="/signin">Sign In</Link>
           </Text>
