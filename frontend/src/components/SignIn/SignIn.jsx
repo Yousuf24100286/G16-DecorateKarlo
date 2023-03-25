@@ -1,6 +1,6 @@
 import React from "react";
 // import chakra ui components
-import { Box, Flex, Heading, Text, Button, Center } from "@chakra-ui/react";
+import { Box, Flex, Heading, Text, Button, Center, FormControl, FormLabel, Input, VStack } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
 
@@ -39,18 +39,18 @@ class SignIn extends React.Component {
         password: this.state.password,
       }),
     })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.error) {
-          alert(data.error);
-        } else {
-          alert("Sign in successfully");
-          localStorage.setItem("token", data.token);
-          localStorage.setItem("user", JSON.stringify(data.user));
-          this.props.history.push("/");
-        }
-      });
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+      if (data.error) {
+        alert(data.error);
+      } else {
+        alert("Sign in successfully");
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("user", JSON.stringify(data.user));
+        this.props.history.push("/");
+      }
+    });
   };
 
 
@@ -66,34 +66,23 @@ class SignIn extends React.Component {
             Sign in to your account
           </Text>
           <form onSubmit={this.handleSubmit}>
-            <Box mb={4}>
-              <label htmlFor="email">Email: </label><br/>
-              <input type="email" name="email" id="email"
-               onChange={(e) => { this.setState({ email: e.target.value }); }}
-              />
-            </Box>
-            <Box mb={4}>
-              <label htmlFor="password">Password: </label><br />
-              <input type="password" name="password" id="password"  
-                onChange={(e) => { this.setState({ password: e.target.value }); }}
-              />
-            </Box>
-            <Box mb={4}>
-              <Link to="/forgot-password">Forgot password?</Link>
-            </Box>
-            <Center spacing={40} direction="row" alignItems="center">
-              <Button type="submit" colorScheme="green" borderRadius="20px"  backgroundColor="green" >
-                <Center h="100%">
-                  <Text color="white" fontSize="20" paddingInline={12} margin={8}  >
-                    Sign In
-                  </Text>  
-                </Center>
+            <VStack>
+              <FormControl isRequired>
+                <FormLabel htmlFor="email">Email</FormLabel>
+                <Input type="email" id="email" placeholder="Email" onChange={(e) => { this.setState({ email: e.target.value }); }} />
+              </FormControl>
+              <FormControl isRequired>
+                <FormLabel htmlFor="password">Password</FormLabel>
+                <Input type="password" id="password" placeholder="Password" onChange={(e) => { this.setState({ password: e.target.value }); }} />
+              </FormControl>
+              <Button type="submit">
+                Sign In 
               </Button>
-            </Center>
+              <Text textAlign="center">
+                Don't have an account? <Link to="/signup">Sign Up</Link>
+              </Text>
+            </VStack>
           </form>
-          <Text textAlign="center">
-            Don't have an account? <Link to="/signup">Sign Up</Link>
-          </Text>
         </Box>
       </Flex>
 
