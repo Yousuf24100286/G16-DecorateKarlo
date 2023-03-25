@@ -10,6 +10,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       session_id: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         references: {
           model: 'cart_sessions',
@@ -17,6 +18,7 @@ module.exports = {
         }
       },
       product_variant_id: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         references: {
           model: 'product_variants',
@@ -24,7 +26,9 @@ module.exports = {
         }
       },
       quantity: {
-        type: Sequelize.INTEGER
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        defaultValue: 1
       },
       createdAt: {
         allowNull: false,

@@ -10,6 +10,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       user_id: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         references: {
           model: 'users',
@@ -17,18 +18,23 @@ module.exports = {
         }
       },
       address_line_1: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       address_line_2: {
         type: Sequelize.STRING
       },
       city: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       country: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING,
+        defaultValue: 'Pakistan'
       },
       postal_code: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       createdAt: {

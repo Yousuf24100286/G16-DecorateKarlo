@@ -10,6 +10,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       product_id: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         references: {
           model: 'products',
@@ -17,15 +18,19 @@ module.exports = {
         }
       },
       variant_attribute: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       variant_level: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       variant_price: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       variant_quantity: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       createdAt: {

@@ -21,16 +21,17 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'order_id',
       as: 'order_items'
     });
-    order_details.belongsTo(models.delivery_address, {
+    order_details.hasone(models.delivery_address, {
       foreignKey: 'delivery_address_id',
       as: 'delivery_address'
     });
-    order_details.belongsTo(models.payment, {
+    order_details.hasone(models.payment, {
       foreignKey: 'payment_id',
       as: 'payment'
     });
   };
-  
+
+  return order_details ;
 };
 
 

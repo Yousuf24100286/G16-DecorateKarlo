@@ -10,18 +10,20 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   cart_item.associate = function(models) {
     // associations can be defined here
-    cart_item.belongsTo(models.product_variant, {
+    
+    cart_item.hasone(models.product_variant, {
       foreignKey: 'product_variant_id',
       as: 'product_variant'
     });
+
     cart_item.belongsTo(model.cart_session, {
       foreignKey: 'session_id',
       as: 'cart_session'
     });
-  };
-  return cart_item;
-
   
+  };
+  
+  return cart_item;
 };
 
 

@@ -10,6 +10,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       user_id: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         references: {
           model: 'users',
@@ -17,7 +18,9 @@ module.exports = {
         }
       },
       cart_session_total: {
-        type: Sequelize.DECIMAL
+        allowNull: false,
+        type: Sequelize.DECIMAL,
+        defaultValue: 0.00
       },
       createdAt: {
         allowNull: false,

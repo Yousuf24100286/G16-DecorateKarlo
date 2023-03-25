@@ -27,8 +27,9 @@ module.exports = (sequelize, DataTypes) => {
       as: 'reviews'
     });
   };
-  return users;
 
+
+  return users;
 };
 
 

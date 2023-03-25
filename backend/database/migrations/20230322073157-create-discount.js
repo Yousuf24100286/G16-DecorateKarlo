@@ -10,12 +10,15 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       discount_name: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       discount_description: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       discount_percentage: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       createdAt: {

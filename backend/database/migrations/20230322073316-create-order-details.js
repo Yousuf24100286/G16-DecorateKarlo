@@ -10,6 +10,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       user_id: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         references: {
           model: 'users',
@@ -17,9 +18,12 @@ module.exports = {
         }
       },
       total: {
-        type: Sequelize.DECIMAL
+        allowNull: false,
+        type: Sequelize.DECIMAL,
+        defaultValue: 0.00
       },
       delivery_address_id: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         references: {
           model: 'delivery_addresses',
@@ -27,7 +31,9 @@ module.exports = {
         }
       },
       payment_method: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING,
+        defaultValue: 'Cash on Delivery'
       },
       payment_id: {
         type: Sequelize.INTEGER,
@@ -37,6 +43,7 @@ module.exports = {
         }
       },
       order_status: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       createdAt: {

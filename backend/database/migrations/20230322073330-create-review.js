@@ -10,6 +10,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       user_id: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         references: {
           model: 'users',
@@ -17,6 +18,7 @@ module.exports = {
         }
       },
       product_id: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         references: {
           model: 'products',
@@ -24,9 +26,11 @@ module.exports = {
         }
       },
       comment: {
+        allowNull: true,
         type: Sequelize.STRING
       },
       rating: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       createdAt: {

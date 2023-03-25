@@ -10,6 +10,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       order_id: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         references: {
           model: 'order_details',
@@ -17,6 +18,7 @@ module.exports = {
         }
       },
       product_variant_id: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         references: {
           model: 'product_variants',
@@ -24,6 +26,7 @@ module.exports = {
         }
       },
       quantity: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       createdAt: {

@@ -10,12 +10,15 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       product_name: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       product_description: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       category_id: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         references: {
           model: 'categories',
@@ -23,6 +26,7 @@ module.exports = {
         }
       },
       discount_id: {
+        allowNull: true,
         type: Sequelize.INTEGER,
         references: {
           model: 'discounts',

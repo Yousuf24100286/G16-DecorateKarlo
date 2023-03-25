@@ -23,11 +23,12 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'category_id',
       as: 'category'
     });
-    product.belongsTo(models.discount, {
+    product.hasone(models.discount, {
       foreignKey: 'discount_id',
       as: 'discount'
     });
   };
+
   return product;
 };
 
