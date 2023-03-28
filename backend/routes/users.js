@@ -7,7 +7,14 @@ const User = require('../database/models/users')
 // @route   POST api/users/register
 // @desc    Register user
 // @access  Public
+// redirect to createUser from users.js
 router.post('/signup', (req, res) => {
+  const {first_name, last_name, username, email, password} = req.body;
+  
+  if(!first_name || !last_name || !username || !email || !password){
+    return res.status(400).json({msg: 'Please enter all fields'});
+  }
+  
   console.log(req.body);  
 });
 

@@ -1,11 +1,12 @@
 import React from "react";
-import { Box, Flex, Heading, Text, Button, Spacer, Stack, Center, Input, FormControl, HStack, VStack } from "@chakra-ui/react";
-// import account and lock icons from chakra ui
+import { Box, Flex, Heading, Text, Button, Spacer, Stack, Center,   HStack, VStack } from "@chakra-ui/react";
+import { FormLabel, FormControl, Input } from "@chakra-ui/react";
 import { LockIcon, AtSignIcon } from "@chakra-ui/icons";
-
 
 import { Link } from "react-router-dom";
 
+import PhoneNumberInput from "./PhoneNumberInput";
+import { COUNTRIES, getCountryTelCode, countryOptions } from "./countries";
 
 
 class SignUp extends React.Component {
@@ -17,7 +18,8 @@ class SignUp extends React.Component {
       username: "",
       email: "",
       password: "",
-      confirm_password: ""
+      confirm_password: "",
+      telephone: "",
     };
   }
 
@@ -25,7 +27,7 @@ class SignUp extends React.Component {
   // handle form submit
   handleSubmit = (e) => {
     e.preventDefault();
-    fetch("http://localhost:5000/api/users/signup", {
+    fetch("http://localhost:5000/api/auth/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -36,7 +38,7 @@ class SignUp extends React.Component {
         username: this.state.username,
         email: this.state.email,
         password: this.state.password,
-        confirm_password: this.state.confirm_password
+        telephone: this.state.telephone,
       }),
     })
     .then((res) => res.json())
@@ -85,6 +87,14 @@ class SignUp extends React.Component {
               </FormControl>
               <FormControl>
                 <Input type="password" placeholder="Confirm Password" onChange={(e)=>{this.setState({confirm_password:e.target.value})}} />
+              </FormControl>
+              <FormControl mb="32px">
+                <PhoneNumberInput
+                  value={this.state.telephone}
+                  options={countryOptions}
+                  placeholder="Enter phone number"
+                  onChange={(e)=>{this.setState({telephone:e}) }}
+                />
               </FormControl>
               <Button type="submit" leftIcon={<LockIcon></LockIcon>}>
                 Create Account

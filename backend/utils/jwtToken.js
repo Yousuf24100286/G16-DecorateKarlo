@@ -1,13 +1,18 @@
 // create utility functions for json web token creation and authentications
-import jwt from 'jsonwebtoken';
+const jwt = require('jsonwebtoken');
+const ErrorHandler = require('../middlewares/errorHandler').ErrorHandler;
 
 // write a function to create json web token for 3 hrs for user sign in data that is email username and password
-function createToken(user) {
-  return jwt.sign(
-    { id: user.id, email: user.email, username: user.username },
-    process.env.JWT_SECRET,
-    { expiresIn: '3h' }
-  );
+function createToken(data) {
+  try {
+    return jwt.sign(
+      data,
+      process.env.JWT_SECRET,
+      { expiresIn: '3h' }
+    );
+  } catch (error) {
+    throw new ErrorHandler(error.statusCode, error.message);
+  }
 }
 
 // write a function to authenticate given token

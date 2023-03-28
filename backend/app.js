@@ -13,9 +13,8 @@ const { ErrorHandler, handleError } = require('./middlewares/errorHandler');
 
 const app = express();
 app.set('trust proxy', true);
-app.use(cors({ credentials: true, origin: process.env.CLIENT_URL }));
+app.use(cors());
 app.use(express.json());
-app.use(morgan('dev'));
 app.use(compression());
 app.use(helmet());
 
