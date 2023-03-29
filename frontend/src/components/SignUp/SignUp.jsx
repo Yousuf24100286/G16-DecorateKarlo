@@ -27,6 +27,7 @@ class SignUp extends React.Component {
   // handle form submit
   handleSubmit = (e) => {
     e.preventDefault();
+    console.log(this.state)
     fetch("http://localhost:5000/api/auth/signup", {
       method: "POST",
       headers: {

@@ -63,10 +63,11 @@ export default function PhoneNumberInput({
           position="absolute"
           value={selectedCountry}
           onChange={onCountryChange}
+          react-html-id="country-code-select"
         >
           <option value="" />
           {options.map(option => (
-            <option value={option.value}>{option.label}</option>
+            <option value={option.value} key={option.value} >{option.label}</option>
           ))}
         </Select>
         <Flex pl={2} width="100%" alignItems="center">
@@ -81,6 +82,7 @@ export default function PhoneNumberInput({
         </Flex>
       </InputLeftElement>
       <Input
+        id="phone-number-input"
         pl="4rem"
         type="tel"
         value={number}
