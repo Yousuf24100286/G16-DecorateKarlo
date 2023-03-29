@@ -1,12 +1,12 @@
 import React from "react";
-import { Box, Flex, Heading, Text, Button, Spacer, Stack, Center,   HStack, VStack } from "@chakra-ui/react";
-import { FormLabel, FormControl, Input } from "@chakra-ui/react";
-import { LockIcon, AtSignIcon } from "@chakra-ui/icons";
+import { Box, Flex, Heading, Text, Button, HStack, VStack } from "@chakra-ui/react";
+import { FormControl, Input } from "@chakra-ui/react";
+import { LockIcon } from "@chakra-ui/icons";
 
 import { Link } from "react-router-dom";
 
 import PhoneNumberInput from "./PhoneNumberInput";
-import { COUNTRIES, getCountryTelCode, countryOptions } from "./countries";
+import { countryOptions } from "./countries";
 
 
 class SignUp extends React.Component {
@@ -92,9 +92,11 @@ class SignUp extends React.Component {
                 <PhoneNumberInput
                   value={this.state.telephone}
                   options={countryOptions}
+                  pattern="^\+[1-9]{1}[0-9]{3,14}$"
                   placeholder="Enter phone number"
                   onChange={(e)=>{this.setState({telephone:e}) }}
                 />
+                {this.state.telephone}
               </FormControl>
               <Button type="submit" leftIcon={<LockIcon></LockIcon>}>
                 Create Account

@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import Flag from "react-world-flags";
 import { AsYouType } from "libphonenumber-js";
-import { COUNTRIES, getCountryTelCode, countryOptions } from "./countries";
+import {  getCountryTelCode  } from "./countries";
 
 export default function PhoneNumberInput({
   size,
