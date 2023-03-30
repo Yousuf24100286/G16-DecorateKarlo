@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const user = require('../controllers/user');
+const user = require('../controllers/users');
 
 router.post('/:id',user.getUserByID);
 router.post('/update/email/:id', user.updateEmail);

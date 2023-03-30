@@ -18,3 +18,9 @@ const getAllProductsByCategory = async (req, res, category, next) => {
   const products = await productService.getAllProductsByCategory(category)
   res.status(200).json(products)
 }
+
+module.exports = {
+  getProductByID,
+  getAllProducts,
+  getAllProductsByCategory
+}

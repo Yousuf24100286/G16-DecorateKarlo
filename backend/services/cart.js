@@ -1,9 +1,9 @@
 const Sequelize = require('sequelize');
 const logger = require('../utils/logger');
 const sequelize = new Sequelize(process.env.DEV_PGDATABASE_URL);
-const Products = require('../database/models/products')(sequelize, Sequelize.DataTypes)
-const Cart = require('../database/models/cart')(sequelize, Sequelize.DataTypes)
-const CartItems = require('../database/models/cart_items')(sequelize, Sequelize.DataTypes)
+const Products = require('../database/models/product')(sequelize, Sequelize.DataTypes)
+const Cart = require('../database/models/cart_session')(sequelize, Sequelize.DataTypes)
+const CartItems = require('../database/models/cart_item')(sequelize, Sequelize.DataTypes)
 
 
 class CartService {

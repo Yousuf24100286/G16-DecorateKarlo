@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const logger = require('../utils/logger');
 const sequelize = new Sequelize(process.env.DEV_PGDATABASE_URL);
-const Products = require('../database/models/products')(sequelize, Sequelize.DataTypes)
+const Products = require('../database/models/product')(sequelize, Sequelize.DataTypes)
 
 class ProductService {
   async getProductByID(id) {
