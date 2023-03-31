@@ -7,15 +7,15 @@ const colors = {
   },
 };
 
-
-
-
 const button = {
   baseStyle: {
     fontWeight: 'bold', // Normally, it is "semibold"
   },
   variants: {
     button1: (props) => ({
+      marginBlock: '10px',
+    }),
+    button2: (props) => ({
       marginBlock: '10px',
       'border-radius': '50px',
       bg: props.colorMode === 'dark' ? 'brand.900' : 'brand.100',
@@ -35,10 +35,14 @@ const button = {
 const text = {
   baseStyle: {
     fontWeight: 'bold', // Normally, it is "semibold"
+    'font-family': 'Poppins',
+    'font-size': '16px',
+    'letter-spacing': '0px',
   },
   variants: {
     text1: (props) => ({
       marginBlock: '10px',
+      'font-family': 'Poppins',
     }),
 
   },
@@ -51,6 +55,29 @@ const text = {
 
 
 
+const link = {
+  baseStyle: {
+    fontWeight: 'bold', // Normally, it is "semibold"
+  },
+  variants: {
+    link1: (props) => ({
+      marginBlock: '10px',
+    }),
+    header: (props) => ({
+      paddingInline: '10px',
+      'font-weight': 'bold',
+      'font-family': 'Poppins',
+      'font-size': '28px',
+      'letter-spacing': '0px',
+      'color': props.colorMode === 'dark' ? '#FFFFFF' : '#000000',
+    }),
+  },
+
+  defaultProps: {
+    variant: 'link1',
+  }
+}
+
 
 
 const theme = extendTheme({
@@ -61,7 +88,8 @@ const theme = extendTheme({
   colors: colors,
   components: {
     Button: button,
-    Text: text
+    Text: text,
+    Link: link
   },
 });
 
