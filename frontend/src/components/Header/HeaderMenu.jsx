@@ -1,5 +1,5 @@
-import { Box, Flex, HStack, IconButton, Link } from "@chakra-ui/react";
-import {React , Component, useState, Fragment} from "react";
+import { HStack, IconButton, Link } from "@chakra-ui/react";
+import {React , Component, Fragment} from "react";
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
 import { Avatar,  } from "@chakra-ui/react";
 import { FaShoppingCart } from 'react-icons/fa';
@@ -81,7 +81,7 @@ class HeaderMenu extends Component {
               onClick={this.handleClick}
             />
           </HStack>
-          {this.state.isToggleOn ? null : <TextMenu />}
+          {this.state.isToggleOn ? "" : <TextMenu />}
         </Fragment>
       );
     }
@@ -129,7 +129,7 @@ class IconMenu extends Component {
           <Link variant="header" href="/cart"><FaShoppingCart  /></Link>
         </IconButton>
         <IconButton>
-          <Link variant="header" href="/account"><Avatar bg="black"/></Link>
+          <Link variant="header" href="/account"><Avatar w={8} h={8} bg="black"/></Link>
         </IconButton>
       </HStack>
     );

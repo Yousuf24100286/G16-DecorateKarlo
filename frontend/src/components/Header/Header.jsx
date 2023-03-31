@@ -1,6 +1,6 @@
-import {React , Component ,useState} from "react";
+import {React , Component } from "react";
 import { Box, HStack } from "@chakra-ui/react";
-import { ReactComponent as Logo } from "./DecorateKarlo-logo.svg"
+import { ReactComponent as Logo } from "../../assets/DecorateKarlo-logo.svg"
 import HeaderMenu from "./HeaderMenu";
 class Header extends Component {
   constructor(props) {

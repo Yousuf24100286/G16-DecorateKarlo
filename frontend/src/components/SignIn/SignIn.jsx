@@ -1,6 +1,6 @@
 import React from "react";
 // import chakra ui components
-import { Box, Flex, Heading, Text, Button, Center, FormControl, FormLabel, Input, VStack } from "@chakra-ui/react";
+import { Box, Flex, Heading, Text, Button, FormControl, FormLabel, Input, VStack } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
 

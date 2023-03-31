@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChakraBaseProvider, ChakraProvider } from '@chakra-ui/react';
+import {  ChakraProvider } from '@chakra-ui/react';
 import theme from './Theme/theme';
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -11,6 +11,7 @@ import SignIn from './SignIn/SignIn.jsx';
 
 import Admin from './Admin/admin.jsx'
 import Header from './Header/Header.jsx';
+import Footer from './Footer/Footer.jsx' ;
 
 class App extends React.Component {
   constructor(props) {
@@ -37,6 +38,7 @@ class App extends React.Component {
             </Routes>
           </Router>
         </div>
+        <Footer />
       </ChakraProvider>
     );
   }
