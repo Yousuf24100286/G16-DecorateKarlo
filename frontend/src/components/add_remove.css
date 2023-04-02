@@ -36,8 +36,9 @@
   .add-product {
     display: flex;
     margin-top: 20px;
-    width: 80%;
+    width: 30%;
     margin: 0 auto;
+    flex-direction: column  ;
   }
   
   .product-input {
@@ -55,8 +56,10 @@
     color: white;
     cursor: pointer;
     font-size: 16px;
-    margin-left: 10px;
+    margin-left: 0px;
     padding: 5px 10px;
+    margin-top: 1vmax;
+    max-width: 40%;
   }
   
   .add-button:hover {
