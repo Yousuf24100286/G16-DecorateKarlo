@@ -31,8 +31,9 @@ const createProduct = async (req, res) => {
 
 const uploadProductImage = async (req, res) => {
   logger.info('Controller: Product - Call: uploadProductImage')
-  console.log(req.body)
-  const productImage = await ProductImageService.addProductImages(req.params.id, req.image)
+  //console.log(req.body)
+  console.log(req.files)
+  const productImage = await ProductImageService.addProductImages(req.params.id, req.file.path)
   res.status(201).json(productImage)
 }
 

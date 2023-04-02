@@ -6,11 +6,11 @@ const { uploadImage } = require('../utils/googleStorage');
 const { ErrorHandler } = require('../middlewares/errorHandler');
 
 
+
 class ProductImageService {
-  async addProductImages(product_id, file) {
+  async addProductImages(product_id, filePath) {
     try {
       logger.info('Service: Product - Call: addProductImages')
-      await new Promise(resolve => setTimeout(resolve, 5));
 
       console.log(product_id)
       logger.info('*********************************************************************************')
@@ -18,12 +18,10 @@ class ProductImageService {
       //console.log(product_id, images)
       try {
         console.log('file upload here')        
-        const url = await uploadImage(file);
-        console.log(url)
 
         const productImages = await ProductImages.create({
           product_id: product_id,
-          image_url: url,
+          image_url: filePath,
           main_image: true
         })
         

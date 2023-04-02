@@ -1,5 +1,4 @@
-const multer = require('multer');
-const upload = multer({ dest: 'images/add/' });
+const upload = require('../config/cloudinaryConfig')
 
 const router = require('express').Router();
 const productController = require('../controllers/product');
