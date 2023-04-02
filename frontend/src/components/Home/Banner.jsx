@@ -12,39 +12,40 @@ class Banner extends React.Component {
   componentDidMount() {
     
     // Uncomment when categories are added to the backend
-    // fetch('http://localhost:5000/api/categories/')
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     this.setState({ categories: data });
-    //   });
-    this.setState({
-      categories: [
-        {
-          _id: '1',
-          name: 'Planters',
-        },
-        {
-          _id: '2',
-          name: 'Vases',
-        },
-        {
-          _id: '3',
-          name: 'Hangings',
-        },
-        {
-          _id: '4',
-          name: 'Kitchen & Dining',
-        },
-        {
-          _id: '5',
-          name: 'Decor',
-        },
-        {
-          _id: '6',
-          name: 'Bath',
-        }
-      ],  
-    });
+    fetch('http://localhost:5000/api/category/all')
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        this.setState({ categories: data });
+      });
+    // this.setState({
+    //   categories: [
+    //     {
+    //       _id: '1',
+    //       name: 'Planters',
+    //     },
+    //     {
+    //       _id: '2',
+    //       name: 'Vases',
+    //     },
+    //     {
+    //       _id: '3',
+    //       name: 'Hangings',
+    //     },
+    //     {
+    //       _id: '4',
+    //       name: 'Kitchen & Dining',
+    //     },
+    //     {
+    //       _id: '5',
+    //       name: 'Decor',
+    //     },
+    //     {
+    //       _id: '6',
+    //       name: 'Bath',
+    //     }
+    //   ],  
+    // });
 
 
 
@@ -73,11 +74,11 @@ class Banner extends React.Component {
         <HStack spacing="50px">
           {this.state.categories.map((category) => (
             <Link 
-              key={category._id} href={`/category/${category._id}`}
+              key={category.id} href={`/category/${category.id}`}
               color="white" fontSize="4xl" fontFamily="heading"
 
             >
-              {category.name}
+              {category.category_name}
             </Link>
           ))}
 

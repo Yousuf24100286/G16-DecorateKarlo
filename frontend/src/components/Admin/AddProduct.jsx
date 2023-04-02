@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import { HStack, Button, VStack, Box, Text, FormControl, ButtonGroup, Input, Select } from '@chakra-ui/react'
+import axios from "axios";
 
 const Variant = {
   name: "",
@@ -78,14 +79,10 @@ class AddProduct extends React.Component {
         alert("Product Added Successfully");
 
         const formData = new FormData();
-        //console.log("Number of Images: " + this.state.images);
-        formData.append("image", this.state.images[0]);
+        formData.append("image", this.state.images);
+
         
-        fetch("http://localhost:5000/api/product/images/add/"+data.id, {
-          method: "POST",
-          body: formData
-        })
-        .then((res) => res.json())
+        axios.post("http://localhost:5000/api/product/images/add/"+data.id, formData)
         .then((data) => {
           console.log(data);
           if(data.staus === 'error') {
@@ -225,7 +222,7 @@ class AddProduct extends React.Component {
           <FormControl>
             <Text>Images</Text>
             <Input isRequired type="file" name="image"
-              onChange={(e)=>{this.setState({images:e.target.files})}}
+              onChange={(e)=>{this.setState({images:e.target.files[0]})}}
             />
           </FormControl>
         </HStack>
