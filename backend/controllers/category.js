@@ -1,9 +1,9 @@
 const logger = require('../utils/logger')
 const categoryService = require('../services/category')
 
-const getCategoryByID = async (req, res, id, next) => {
+const getCategoryByID = async (req, res, next) => {
   logger.info('Controller: Category - Call: getCategoryByID')
-  const category = await categoryService.getCategoryByID(id)
+  const category = await categoryService.getCategoryByID(req.params.id)
   res.status(200).json(category)
 }
 

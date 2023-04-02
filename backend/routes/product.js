@@ -1,9 +1,14 @@
+const multer = require('multer');
+const upload = multer({ dest: 'images/add/' });
+
 const router = require('express').Router();
 const productController = require('../controllers/product');
 
-router.post('/:id', productController.getProductByID);
+router.get('/id/:id', productController.getProductByID);
 router.get('/', productController.getAllProducts);
-router.get('/:category', productController.getAllProductsByCategory);
+router.get('/category/:category', productController.getAllProductsByCategory);
+router.post('/add', productController.createProduct);
+router.post('/images/add/:id' , upload.single('image') ,productController.uploadProductImage);
 
 
 module.exports = router;
