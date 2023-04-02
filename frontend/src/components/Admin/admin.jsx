@@ -69,7 +69,7 @@ class Admin extends React.Component {
             )
           })}
         </ButtonGroup>
-        <Box width="85vw" height="80vh" border="1px solid black">
+        <Box width="85vw" minH="80vh"  border="1px solid black">
           {this.state.currentPanel}
         </Box>
       </HStack>
