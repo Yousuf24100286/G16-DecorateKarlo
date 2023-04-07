@@ -5,7 +5,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
   const product = sequelize.define('product', {
     product_name: DataTypes.STRING,
-    product_description: DataTypes.STRING,
+    product_description: DataTypes.TEXT,
     category_id: DataTypes.INTEGER,
     discount_id: DataTypes.INTEGER
   }, {});
@@ -18,6 +18,10 @@ module.exports = (sequelize, DataTypes) => {
     product.hasMany(models.review, {
       foreignKey: 'product_id',
       as: 'reviews'
+    });
+    product.hasMany(models.product_images, {
+      foreignKey: 'product_id',
+      as: 'product_images'
     });
     product.belongsTo(models.category, {
       foreignKey: 'category_id',

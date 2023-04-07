@@ -4,8 +4,8 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   const delivery_address = sequelize.define('delivery_address', {
-    address_line_1: DataTypes.STRING,
-    address_line_2: DataTypes.STRING,
+    address_line_1: DataTypes.TEXT,
+    address_line_2: DataTypes.TEXT,
     city: DataTypes.STRING,
     country: DataTypes.STRING,
     postal_code: DataTypes.STRING

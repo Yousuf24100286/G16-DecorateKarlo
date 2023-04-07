@@ -10,10 +10,14 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       product_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'products',
+          key: 'id'
+        },
       },
       image_url: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       main_image: {
         type: Sequelize.BOOLEAN

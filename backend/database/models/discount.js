@@ -5,7 +5,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
   const discount = sequelize.define('discount', {
     discount_name: DataTypes.STRING,
-    discount_description: DataTypes.STRING,
+    discount_description: DataTypes.TEXT,
     discount_percentage: DataTypes.INTEGER
   }, {});
   discount.associate = function(models) {

@@ -19,10 +19,10 @@ module.exports = {
       },
       address_line_1: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       address_line_2: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       city: {
         allowNull: false,

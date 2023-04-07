@@ -15,7 +15,7 @@ module.exports = {
       },
       discount_description: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       discount_percentage: {
         allowNull: false,
