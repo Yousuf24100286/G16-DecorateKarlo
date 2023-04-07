@@ -26,10 +26,8 @@ class SignIn extends React.Component {
   // build form submit form
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state.email);
-    console.log(this.state.password);
-    // send data to backend
-    fetch("http://localhost:5000/api/users/signin", {
+
+    fetch("http://localhost:5000/api/auth/signin", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -42,23 +40,24 @@ class SignIn extends React.Component {
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
-      if (data.error) {
-        alert(data.error);
+      if (data.status === 'error') {
+        alert(data.message);
       } else {
         alert("Sign in successfully");
         localStorage.setItem("token", data.token);
         localStorage.setItem("user", JSON.stringify(data.user));
-        this.props.history.push("/");
+        localStorage.setItem("cart", JSON.stringify(data.cart));
+        localStorage.setItem("guest", "false") ;
+        window.location.href = "/";
       }
     });
   };
 
 
-
   render() {
     return (
-      <Flex direction="column" align="center" justify="center" h="100vh" >
-        <Box w="400px" p={4} borderWidth="1px" borderRadius="lg" >
+      <Flex direction="column" align="center" justify="center" >
+        <Box w="450px" p={8}  >
           <Heading as="h1" size="lg" textAlign="center" mb={4}>
             Sign In
           </Heading>

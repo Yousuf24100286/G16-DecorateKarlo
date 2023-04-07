@@ -15,6 +15,11 @@ class AddCategory extends React.Component {
     console.log(e.target.name.value);
     console.log(e.target.description.value);
   
+    if(e.target.name.value === "" || e.target.description.value === "") {
+      alert("Please fill in all fields");
+      return;
+    }
+
     fetch("http://localhost:5000/api/category/add", {
       method: "POST",
       headers: {
@@ -28,7 +33,7 @@ class AddCategory extends React.Component {
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
-      if (data.error) {
+      if (data.status === 'error') {
         alert(data.error);
       } else {
         alert("New category created successfully");

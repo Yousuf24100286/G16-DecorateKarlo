@@ -18,37 +18,6 @@ class Banner extends React.Component {
         console.log(data);
         this.setState({ categories: data });
       });
-    // this.setState({
-    //   categories: [
-    //     {
-    //       _id: '1',
-    //       name: 'Planters',
-    //     },
-    //     {
-    //       _id: '2',
-    //       name: 'Vases',
-    //     },
-    //     {
-    //       _id: '3',
-    //       name: 'Hangings',
-    //     },
-    //     {
-    //       _id: '4',
-    //       name: 'Kitchen & Dining',
-    //     },
-    //     {
-    //       _id: '5',
-    //       name: 'Decor',
-    //     },
-    //     {
-    //       _id: '6',
-    //       name: 'Bath',
-    //     }
-    //   ],  
-    // });
-
-
-
   }
 
 

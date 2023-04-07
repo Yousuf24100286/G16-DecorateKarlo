@@ -8,10 +8,13 @@ import './App.css';
 import Home from './Home/Home.jsx';
 import Signup from './SignUp/SignUp.jsx';
 import SignIn from './SignIn/SignIn.jsx';
+import Account from './Account/Account';
 
 import Admin from './Admin/admin.jsx'
 import Header from './Header/Header.jsx';
 import Footer from './Footer/Footer.jsx' ;
+
+import AllProduct from './AllProduct/AllProduct';
 
 class App extends React.Component {
   constructor(props) {
@@ -35,6 +38,8 @@ class App extends React.Component {
               <Route path="/signup" element={<Signup />} />
               <Route path="/signin" element={<SignIn />} />
               <Route path='/admin' element={<Admin />} />
+              <Route path='/products' element={<AllProduct />} />
+              <Route path='/account' element={<Account />} />
             </Routes>
           </Router>
         </div>

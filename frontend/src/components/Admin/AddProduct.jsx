@@ -82,7 +82,7 @@ class AddProduct extends React.Component {
         formData.append("image", this.state.images);
 
         
-        axios.post("http://localhost:5000/api/product/images/add/"+data.id, formData)
+        axios.post("http://localhost:5000/api/product/images/add/"+ data.id, formData)
         .then((data) => {
           console.log(data);
           if(data.staus === 'error') {

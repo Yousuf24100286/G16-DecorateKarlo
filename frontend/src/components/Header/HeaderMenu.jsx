@@ -1,7 +1,8 @@
-import { HStack, IconButton, Link } from "@chakra-ui/react";
+import { DrawerContent, DrawerHeader, Stack ,HStack, IconButton, Link } from "@chakra-ui/react";
 import {React , Component, Fragment} from "react";
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
 import { Avatar,  } from "@chakra-ui/react";
+import { Drawer, DrawerOverlay } from "@chakra-ui/react";
 import { FaShoppingCart } from 'react-icons/fa';
 
 
@@ -77,11 +78,30 @@ class HeaderMenu extends Component {
         <Fragment>
           <HStack justifyContent="flex-end" paddingInline="25px" >
             <IconButton 
-              icon={this.state.isToggleOn ? <HamburgerIcon  w={16} h={16} /> : <CloseIcon w={16} h={16} />} 
+              icon={this.state.isToggleOn ? <HamburgerIcon  w={16} h={16} /> : null} 
               onClick={this.handleClick}
             />
           </HStack>
-          {this.state.isToggleOn ? "" : <TextMenu />}
+          <Drawer
+            isOpen={!this.state.isToggleOn}
+            placement="right"
+            
+          >
+            <DrawerOverlay />
+            <DrawerContent>
+              <DrawerHeader borderBottomWidth="1px">
+                <HStack justifyContent="flex-end" paddingInline="25px" >
+                  <IconButton
+                    icon={<CloseIcon w={8} h={8} />}
+                    onClick={this.handleClick}
+                  />
+                </HStack>
+              </DrawerHeader>
+              <IconMenu />
+              <TextMenu direction="column" />
+            </DrawerContent>
+
+          </Drawer>
         </Fragment>
       );
     }
@@ -93,14 +113,19 @@ export default HeaderMenu;
 
 
 class TextMenu extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      direction: props.direction || "row",
+    }
+  }
   render() {
     return (
-      <HStack width="100%" >
+      <Stack width="100%" direction={this.state.direction} >
         <Link variant="header" href="/">Home</Link>
         <Link variant="header" href="/about">About</Link>
-        <Link variant="header" href="/track-order">Track Order</Link>
         <Link variant="header" href="/contact">Contact</Link>
-      </HStack>
+      </Stack>
     );
   }
 }

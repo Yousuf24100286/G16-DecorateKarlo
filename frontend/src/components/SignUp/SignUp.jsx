@@ -28,6 +28,15 @@ class SignUp extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     console.log(this.state)
+    if(this.state.password.length < 8) {
+      alert("Password must be at least 8 characters");
+      return;
+    }
+    if(this.state.password !== this.state.confirm_password) {
+      alert("Password does not match");
+      return;
+    }
+
     fetch("http://localhost:5000/api/auth/signup", {
       method: "POST",
       headers: {
@@ -45,13 +54,11 @@ class SignUp extends React.Component {
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
-      if (data.error) {
-        alert(data.error);
+      if (data.status === 'error') {
+        alert(data.message);
       } else {
         alert("Sign up successfully");
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("user", JSON.stringify(data.user));
-        this.props.history.push("/signin");
+        window.location.href = "/signin";
       }
     });
   };
@@ -59,8 +66,8 @@ class SignUp extends React.Component {
 
   render() {
     return (
-      <Flex align="center" justify="center" h="100vh">
-        <Box w="450px" p={8} borderWidth="1px" borderRadius="lg">
+      <Flex align="center" justify="center" >
+        <Box w="450px" p={8} >
           <Heading as="h1" size="lg" textAlign="center" mb={4}>
             Sign Up
           </Heading>
@@ -83,13 +90,13 @@ class SignUp extends React.Component {
               <FormControl isRequired>
                 <Input type="email" placeholder="Email" onChange={(e)=>{this.setState({email:e.target.value})}} />
               </FormControl>
-              <FormControl>
+              <FormControl isRequired>
                 <Input type="password" placeholder="Password" onChange={(e)=>{this.setState({password:e.target.value})}} />
               </FormControl>
-              <FormControl>
+              <FormControl isRequired>
                 <Input type="password" placeholder="Confirm Password" onChange={(e)=>{this.setState({confirm_password:e.target.value})}} />
               </FormControl>
-              <FormControl mb="32px">
+              <FormControl mb="32px" isRequired>
                 <PhoneNumberInput
                   value={this.state.telephone}
                   options={countryOptions}
