@@ -58,6 +58,24 @@ class UserService {
     })
     return newUser;
   }
+
+  async updateUser(id, user) {
+    logger.info('Service: User - Call: updateUser')
+    const newUser = await Users.update({
+      username: user.username,
+      email: user.email,
+      first_name: user.first_name,
+      last_name: user.last_name,
+      telephone: user.telephone,
+      priv: 'Customer'
+    }, {
+      where: {
+        id: id
+      }
+    })
+    return newUser;
+  }
+
     
   async updateEmail(id, email) {
     logger.info('Service: User - Call: updateEmail')

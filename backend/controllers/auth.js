@@ -14,7 +14,21 @@ const loginUser = async (req, res) => {
   res.status(200).json({token, user});
 }
 
+const updateUser = async (req, res) => {
+  logger.info('Controller: Auth - Call: updateUser');
+  const {token , user} = await authService.updateUser(req.body);
+  res.status(200).json({token, user});
+}
+
+const updatePassword = async (req, res) => {
+  logger.info('Controller: Auth - Call: updatePassword');
+  const {token , user} = await authService.updatePassword(req.body);
+  res.status(200).json({token, user});
+}
+
 module.exports = {
   createUser,
-  loginUser
+  loginUser,
+  updateUser,
+  updatePassword
 }
