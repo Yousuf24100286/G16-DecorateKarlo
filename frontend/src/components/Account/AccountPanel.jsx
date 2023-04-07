@@ -7,6 +7,7 @@ class AccountPanel extends React.Component {
     super(props);
     // set the state
     this.state = {
+      id: "",
       first_name: "",
       last_name: "",
       username: "",
@@ -22,6 +23,7 @@ class AccountPanel extends React.Component {
   componentDidMount() {
     const user = JSON.parse(localStorage.getItem("user"));
     this.setState({
+      id: user.id,
       first_name: user.first_name,
       last_name: user.last_name,
       username: user.username,
@@ -30,7 +32,8 @@ class AccountPanel extends React.Component {
     })
   }
 
-  updateInformation = () => {
+  updateInformation = (e) => {
+    e.preventDefault();
     console.log(this.state.changed_information)
     if(this.state.changed_information.length === 0) {
       alert("No information has been changed")
@@ -41,6 +44,7 @@ class AccountPanel extends React.Component {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          id: this.state.id,
           first_name: this.state.first_name,
           last_name: this.state.last_name,
           username: this.state.username,
@@ -56,6 +60,7 @@ class AccountPanel extends React.Component {
           alert(data.message);
         } else {
           alert("Update successfully");
+          localStorage.setItem("token", data.token);
           localStorage.setItem("user", JSON.stringify(data.user));
           window.location.href = "/account";
         }
@@ -81,6 +86,7 @@ class AccountPanel extends React.Component {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        id: this.state.id,
         oldPassword: this.state.oldPassword,
         newPassword: this.state.newPassword,
       }),
@@ -91,8 +97,10 @@ class AccountPanel extends React.Component {
       if (data.status === 'error') {
         alert(data.message);
       } else {
-        alert("Update successfully");
-        //window.location.href = "/account";
+        alert("Password Update successfully");
+        localStorage.setItem("user", JSON.stringify(data.user));
+        localStorage.setItem("token", data.token);
+        window.location.href = "/account";
       }
     });
 
@@ -110,7 +118,13 @@ class AccountPanel extends React.Component {
           <Heading
             as="h2" size="lg" textAlign="center" mb={8}
           >Account Information</Heading>
-          <form width="30%">
+          <form width="30%" onSubmit={this.updateInformation}>
+            <FormControl>
+              <HStack>
+                <FormLabel width="200px">User ID:</FormLabel>
+                <Input type="text" value={this.state.id} readOnly />
+              </HStack>
+            </FormControl>
             <FormControl>
               <HStack>
                 <FormLabel width="200px">First Name:</FormLabel>
@@ -121,6 +135,8 @@ class AccountPanel extends React.Component {
                 }}
                 />
               </HStack>
+            </FormControl>
+            <FormControl>
               <HStack>
                 <FormLabel width="200px">Last Name:</FormLabel>
                 <Input type="text" value={this.state.last_name} 
@@ -130,21 +146,38 @@ class AccountPanel extends React.Component {
                 }}
                 />
               </HStack>
+            </FormControl>
+            <FormControl>
               <HStack>
                 <FormLabel width="200px">Username:</FormLabel>
                 <Input type="text" value={this.state.username} 
                 readOnly
                 />
               </HStack>
+            </FormControl>
+            <FormControl>
               <HStack>
                 <FormLabel width="200px">Email:</FormLabel>
-                <Input type="text" value={this.state.email} />
+                <Input type="text" value={this.state.email} 
+                onChange={(e) => {
+                  this.setState({email: e.target.value})
+                  this.state.changed_information.push("email")
+                }}
+                />
               </HStack>
+            </FormControl>
+            <FormControl>
               <HStack>
                 <FormLabel width="200px">Telephone:</FormLabel>
-                <Input type="text" value={this.state.telephone} />
+                <Input type="text" value={this.state.telephone} 
+                readOnly
+                />
               </HStack>
-              <Button colorScheme="teal" variant="outline" mt={4} width="100%" >Save Changes</Button>
+            </FormControl>
+            <FormControl>
+              <Button colorScheme="teal" variant="outline" mt={4} width="100%" 
+              type="submit"
+              >Save Changes</Button>
             </FormControl>
           </form>
         </Box>
@@ -152,7 +185,7 @@ class AccountPanel extends React.Component {
           <Heading
             as="h2" size="lg" textAlign="center" mb={8}
           >Change Password</Heading>
-          <form width="30%">
+          <form width="30%" onSubmit={this.updatePassword}>
             <FormControl>
               <HStack>
                 <FormLabel width="300px">Current Password:</FormLabel>
@@ -162,6 +195,8 @@ class AccountPanel extends React.Component {
                 }}
                 />
               </HStack>
+            </FormControl>
+            <FormControl>
               <HStack>
                 <FormLabel width="300px">New Password:</FormLabel>
                 <Input type="password" 
@@ -170,6 +205,8 @@ class AccountPanel extends React.Component {
                 }}
                 />
               </HStack>
+            </FormControl>
+            <FormControl>
               <HStack>
                 <FormLabel width="300px">Confirm New Password:</FormLabel>
                 <Input type="password" 
@@ -178,8 +215,10 @@ class AccountPanel extends React.Component {
                 }}
                 />
               </HStack>
+            </FormControl>
+            <FormControl>
               <Button colorScheme="teal" variant="outline" mt={4} width="100%" 
-              onSubmit={this.updatePassword}
+              type='submit'
               >Save Changes</Button>
             </FormControl>
           </form>
