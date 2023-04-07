@@ -34,8 +34,6 @@ class CategoryService {
   async createCategory(name, description) {
     try {
       logger.info('Service: Category - Call: addCategory')
-      
-      
       const category = await Category.create({
         category_name: name,
         category_description: description

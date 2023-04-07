@@ -9,6 +9,17 @@ const uploadImage = require('../utils/googleStorage');
 const { ErrorHandler } = require('../middlewares/errorHandler');
 
 class ProductService {
+  constructor() {
+    Products.sync()
+    ProductVariant.sync()
+    ProductImages.sync()
+    Products.hasMany(ProductVariant, {foreignKey: 'product_id'})
+    ProductVariant.belongsTo(Products, {foreignKey: 'product_id'})
+    Products.hasMany(ProductImages, {foreignKey: 'product_id'})
+    ProductImages.belongsTo(Products, {foreignKey: 'product_id'})
+  }
+
+
   async getProductByID(id) {
     try {
       logger.info('Service: Product - Call: getProductByID')
@@ -26,8 +37,22 @@ class ProductService {
   async getAllProducts() {
     try {
       logger.info('Service: Product - Call: getAllProducts')
-      const products = await Products.findAll()
+      // get all products with their main image urls from product image model
+      const products = await Products.findAll({
+        include: [
+          {
+            model: ProductImages,
+            where: {
+              main_image: true
+            }
+          }
+        ]
+      })
       return products;
+
+
+      //const products = await Products.findAll()
+      //return products;
     } catch(error) {
       throw new ErrorHandler(error.statusCode, error.message);
     }
