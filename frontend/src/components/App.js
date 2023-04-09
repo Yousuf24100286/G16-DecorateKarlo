@@ -14,7 +14,8 @@ import Admin from './Admin/admin.jsx'
 import Header from './Header/Header.jsx';
 import Footer from './Footer/Footer.jsx' ;
 
-import AllProduct from './AllProduct/AllProduct';
+import AllProduct from './Product/AllProduct';
+import SingleProduct from './Product/SingleProduct';
 
 class App extends React.Component {
   constructor(props) {
@@ -38,7 +39,8 @@ class App extends React.Component {
               <Route path="/signup" element={<Signup />} />
               <Route path="/signin" element={<SignIn />} />
               <Route path='/admin' element={<Admin />} />
-              <Route path='/products' element={<AllProduct />} />
+              <Route path="product/" element={<AllProduct />} />
+              <Route path="product/:id" element={<SingleProduct  />} />
               <Route path='/account' element={<Account />} />
             </Routes>
           </Router>

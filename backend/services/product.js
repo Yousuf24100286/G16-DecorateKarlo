@@ -26,7 +26,15 @@ class ProductService {
       const product = await Products.findOne({
         where: {
           id: id
-        }
+        },
+        include: [
+          {
+            model: ProductVariant
+          },
+          {
+            model: ProductImages
+          }
+        ]
       })
       return product;
     } catch (error) {
