@@ -66,7 +66,7 @@ class AccountPanel extends React.Component {
         }
       });
     }
-  }
+  };
 
   updatePassword = (e) => {
     e.preventDefault();
@@ -103,10 +103,7 @@ class AccountPanel extends React.Component {
         window.location.href = "/account";
       }
     });
-
-
-  
-  }
+  };
 
 
   render() {
@@ -225,7 +222,7 @@ class AccountPanel extends React.Component {
         </Box>
       </HStack>
     );
-  }
-}
+  };
+};
 
 export default AccountPanel;

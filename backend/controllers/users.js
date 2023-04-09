@@ -52,6 +52,6 @@ module.exports = {
   updateLastName,
   updateTelephone,
   updatePassword
-}
+};
 
 
