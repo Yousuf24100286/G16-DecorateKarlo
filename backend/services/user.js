@@ -2,6 +2,8 @@ const Sequelize = require('sequelize');
 const logger = require('../utils/logger');
 const sequelize = new Sequelize(process.env.DEV_PGDATABASE_URL);
 const Users = require('../database/models/users')(sequelize, Sequelize.DataTypes)
+const ErrorHandler = require('../middlewares/errorHandler').ErrorHandler;
+
 
 class UserService {
   async getUserByID(id) {
