@@ -31,4 +31,4 @@ module.exports = {
   loginUser,
   updateUser,
   updatePassword
-}
+};
