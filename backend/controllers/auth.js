@@ -1,5 +1,4 @@
 const logger = require('../utils/logger');
-
 authService = require('../services/auth');
 
 const createUser = async (req, res) => {
@@ -31,4 +30,4 @@ module.exports = {
   loginUser,
   updateUser,
   updatePassword
-}
+};
