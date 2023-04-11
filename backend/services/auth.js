@@ -1,4 +1,4 @@
-require('dotenv').config() ;
+require('dotenv').config();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const validateUser = require('../utils/validate').validateUser
@@ -163,9 +163,8 @@ class AuthService {
     catch (error) {
       throw new ErrorHandler(error.statusCode, error.message);
     }
-  }
-
-}
+  };
+};
 
 
 module.exports = new AuthService();

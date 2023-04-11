@@ -59,13 +59,13 @@ class Account extends React.Component {
       username: user.username,
       email: user.email,
       telephone: user.telephone,
-    })
+    });
 
     this.setState({
       currentPanel: this.state.panels[0]
-    })
+    });
 
-  }
+  };
 
   componentDidUpdate() {
     const emptyState = ['null', 'undefined', null, undefined ]
@@ -78,7 +78,7 @@ class Account extends React.Component {
     if(localStorage.getItem("guest") === "true") {
       window.location.href = "/signin";
     }
-  }
+  };
 
 
   signOut = () => {
@@ -87,12 +87,12 @@ class Account extends React.Component {
     localStorage.removeItem("cart");
     localStorage.setItem("guest", "true");
     window.location.href = "/signin";
-  }
+  };
   handlePanelChange = (e) => {
     this.setState({
       currentPanel: this.state.panels.filter((panel) => panel.name === e.target.value)[0]
     })
-  }
+  };
 
   render() {
     return (
@@ -138,6 +138,6 @@ class Account extends React.Component {
     );
   }
 
-}
+};
 
 export default Account;
