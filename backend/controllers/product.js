@@ -37,10 +37,24 @@ const uploadProductImage = async (req, res) => {
   res.status(201).json(productImage)
 }
 
+const addProductReview = async (req, res) => {
+  logger.info('Controller: Product - Call: addProductReview')
+  const product = await productService.addProductReview(req.body.product_id, req.body.user_id ,req.body.review , req.body.rating)
+  res.status(201).json(product)
+}
+
+const getProductReviews = async (req, res) => {
+  logger.info('Controller: Product - Call: getProductReviews')
+  const reviews = await productService.getProductReviews(req.params.id)
+  res.status(201).json(reviews)
+}
+
 module.exports = {
   getProductByID,
   getAllProducts,
   getAllProductsByCategory,
   createProduct,
-  uploadProductImage
+  uploadProductImage,
+  addProductReview,
+  getProductReviews
 }

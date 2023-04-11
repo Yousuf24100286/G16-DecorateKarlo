@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const validateUser = require('../utils/validate').validateUser
 const {createToken} = require('../utils/jwtToken');
 const userService = require('../services/user');
+const cartService = require('../services/cart');
 const {getUserByEmail, getUserByUserName, addUser } = require('../services/user');
 const logger = require('../utils/logger');
 const ErrorHandler = require('../middlewares/errorHandler').ErrorHandler;
@@ -38,6 +39,9 @@ class AuthService {
           priv: 'Customer'
         }) ;
         logger.info('newUser', newUser);
+        const cart = await cartService.createCart(newUser.id) ;
+        logger.info('cart', cart);
+
 
         const token = createToken({
           id: newUser.id,
@@ -45,7 +49,7 @@ class AuthService {
           email: newUser.email
         });
         logger.info('token', token);
-        return {token: token, user: newUser} ;
+        return {token: token, user: newUser, cart: cart} ;
       } else {
         throw new ErrorHandler(400, 'Please enter valid email and password');
       }
@@ -76,7 +80,11 @@ class AuthService {
           username: UserByEmail.username,
           email: UserByEmail.email
         });
-        return {token: token, user: UserByEmail} ;
+        logger.info('token', token);
+
+        const cart = await cartService.getCartByUserID(UserByEmail.id) ;
+        
+        return {token: token, user: UserByEmail, cart: cart} ;
       } else {
         throw new ErrorHandler(400, 'Please enter valid email and password');
       }

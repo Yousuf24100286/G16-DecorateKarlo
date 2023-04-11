@@ -5,6 +5,7 @@
   "dependencies": {
     "@chakra-ui/icons": "^2.0.17",
     "@chakra-ui/react": "^2.5.5",
+    "@chakra-ui/vue": "^0.13.1",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@testing-library/jest-dom": "^5.16.5",
@@ -20,6 +21,7 @@
     "react-image": "^4.1.0",
     "react-router-dom": "^6.9.0",
     "react-scripts": "^5.0.1",
+    "react-star-ratings": "^2.3.0",
     "react-svg": "^16.1.7",
     "react-world-flags": "^1.5.1",
     "states-cities-db": "^1.4.1",

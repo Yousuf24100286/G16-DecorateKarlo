@@ -4,6 +4,9 @@ const sequelize = new Sequelize(process.env.DEV_PGDATABASE_URL);
 const Products = require('../database/models/product')(sequelize, Sequelize.DataTypes)
 const ProductVariant = require('../database/models/product_variant')(sequelize, Sequelize.DataTypes)
 const ProductImages = require('../database/models/product_images')(sequelize, Sequelize.DataTypes)
+const ProductReview = require('../database/models/review')(sequelize, Sequelize.DataTypes)
+const Users = require('../database/models/users')(sequelize, Sequelize.DataTypes)
+
 const uploadImage = require('../utils/googleStorage');
 
 const { ErrorHandler } = require('../middlewares/errorHandler');
@@ -13,10 +16,16 @@ class ProductService {
     Products.sync()
     ProductVariant.sync()
     ProductImages.sync()
+    ProductReview.sync()
+    Users.sync()
     Products.hasMany(ProductVariant, {foreignKey: 'product_id'})
     ProductVariant.belongsTo(Products, {foreignKey: 'product_id'})
     Products.hasMany(ProductImages, {foreignKey: 'product_id'})
     ProductImages.belongsTo(Products, {foreignKey: 'product_id'})
+    Products.hasMany(ProductReview, {foreignKey: 'product_id'})
+    ProductReview.belongsTo(Products, {foreignKey: 'product_id'})
+    Users.hasMany(ProductReview, {foreignKey: 'user_id'})
+    ProductReview.belongsTo(Users, {foreignKey: 'user_id'})
   }
 
 
@@ -104,6 +113,42 @@ class ProductService {
       }
       
       return product;
+    } catch(error) {
+      throw new ErrorHandler(error.statusCode, error.message);
+    }
+  }
+
+  async addProductReview(product_id, user_id, review, rating) {
+    try {
+      logger.info('Service: Product - Call: addProductReview')
+      const productReview = await ProductReview.create({
+        product_id: product_id,
+        comment: review,
+        user_id: user_id,
+        rating: rating
+      })
+      return productReview;
+    } catch(error) {
+      throw new ErrorHandler(error.statusCode, error.message);
+    }
+  }
+
+
+  async getProductReviews(product_id) {
+    try {
+      logger.info('Service: Product - Call: getProductReviews')
+      const productReviews = await ProductReview.findAll({
+        where: {
+          product_id: product_id
+        },
+        include: [
+          {
+            model: Users,
+            attributes: ['id', 'first_name', 'last_name']
+          }
+        ]
+      })
+      return productReviews;
     } catch(error) {
       throw new ErrorHandler(error.statusCode, error.message);
     }

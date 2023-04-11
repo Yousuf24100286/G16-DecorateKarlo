@@ -8,7 +8,7 @@ const getCartByID = async (req, res, next) => {
 }
 const addProductToCart = async (req, res, next) => {
   logger.info('Controller: Cart - Call: addProductToCart')
-  const cartItem = await cartService.addProductToCart(req.params.id, req.body.product_id, req.body.quantity)
+  const cartItem = await cartService.addProductToCart(req.params.id, req.body)
   res.status(200).json(cartItem)
 }
 const removeProductFromCart = async (req, res, next) => {
