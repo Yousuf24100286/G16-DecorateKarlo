@@ -82,9 +82,11 @@ class AuthService {
         });
         logger.info('token', token);
 
-        const cart = await cartService.getCartByUserID(UserByEmail.id) ;
-        
-        return {token: token, user: UserByEmail, cart: cart} ;
+        const Cart = await cartService.getCartByUserID(UserByEmail.id) ;
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        logger.info('cart', Cart);
+        console.log(Cart);
+        return {token: token, user: UserByEmail, cart: Cart} ;
       } else {
         throw new ErrorHandler(400, 'Please enter valid email and password');
       }

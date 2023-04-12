@@ -38,7 +38,7 @@ class SignIn extends React.Component {
       }),
     })
     .then((res) => res.json())
-    .then((data) => {
+    .then(async (data) => {
       console.log(data);
       if (data.status === 'error') {
         alert(data.message);

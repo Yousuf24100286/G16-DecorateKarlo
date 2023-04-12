@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     });
     cart_session.hasMany(models.cart_items, {
       foreignKey: 'cart_session_id',
-      as: 'cart_items'
+      as: 'cart_session'
     });
   };
   return cart_session;

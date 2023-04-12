@@ -9,13 +9,36 @@ const CartItems = require('../database/models/cart_item')(sequelize, Sequelize.D
 const ErrorHandler = require('../middlewares/errorHandler').ErrorHandler;
 
 class CartService {
+  constructor() {
+    Cart.sync();
+    CartItems.sync();
+    Products.sync();
+    ProductVariants.sync();
+    Cart.hasMany(CartItems, { foreignKey: 'session_id' });
+    CartItems.belongsTo(Cart, { foreignKey: 'session_id' });
+    CartItems.belongsTo(ProductVariants, { foreignKey: 'product_variant_id' });
+    ProductVariants.hasMany(CartItems, { foreignKey: 'product_variant_id' });
+    Products.hasMany(ProductVariants, { foreignKey: 'product_id' });
+    ProductVariants.belongsTo(Products, { foreignKey: 'product_id' });
+  }
+
   async getCartByID(id) {
     try {
       logger.info('Service: Cart - Call: getCartByID')
       const cart = await Cart.findOne({
         where: {
           id: id
-        }
+        },
+        include: [{
+          model: CartItems,
+          include: [{
+            model: ProductVariants,
+            include: [{
+              model: Products
+            }]
+          }]
+        }]
+
       })
       return cart;
     } catch (error) {
@@ -23,13 +46,13 @@ class CartService {
     }
   }
 
-  async addProductToCart(cart_id, body) {
+  async addProductToCart(session_id, body) {
     const { product_id, variant_id, quantity, price } = body;
     try {
       logger.info('Service: Cart - Call: addProductToCart')
       const cart = await Cart.findOne({
         where: {
-          id: cart_id
+          id: session_id
         }
       })
       const product_variant = await ProductVariants.findOne({
@@ -38,17 +61,17 @@ class CartService {
         }
       })
       const cartItem = await CartItems.create({
-        cart_id: cart.id,
-        product_id: product_variant.id,
+        session_id: cart.id,
+        product_variant_id: product_variant.id,
         quantity: quantity
       })
-      await cartItem.save();
-      const totel = await this.getCartTotal(cart_id);
+      //await cartItem.save();
+      const totel = await this.getCartTotal(session_id);
       await Cart.update({
         total: totel
       }, {
         where: {
-          id: cart_id
+          id: session_id
         }
       })
 
@@ -57,12 +80,12 @@ class CartService {
       throw new ErrorHandler(error.statusCode, error.message);
     }
   }
-  async removeProductFromCart(cart_id, product_id) {
+  async removeProductFromCart(session_id, product_id) {
     try {
       logger.info('Service: Cart - Call: removeProductFromCart')
       const cart = await Cart.findOne({
         where: {
-          id: cart_id
+          id: session_id
         }
       })
       const product = await Products.findOne({
@@ -72,7 +95,7 @@ class CartService {
       })
       const cartItem = await CartItems.destroy({
         where: {
-          cart_id: cart.id,
+          session_id: cart.id,
           product_id: product.id
         }
       })
@@ -81,12 +104,12 @@ class CartService {
       throw new ErrorHandler(error.statusCode, error.message);
     }
   }
-  async updateProductQuantity(cart_id, product_id, quantity) {
+  async updateProductQuantity(session_id, product_id, quantity) {
     try {
       logger.info('Service: Cart - Call: updateProductQuantity')
       const cart = await Cart.findOne({
         where: {
-          id: cart_id
+          id: session_id
         }
       })
       const product = await Products.findOne({
@@ -98,7 +121,7 @@ class CartService {
         quantity: quantity
       }, {
         where: {
-          cart_id: cart.id,
+          session_id: cart.id,
           product_id: product.id
         }
       })
@@ -109,12 +132,12 @@ class CartService {
   }
   
 
-  async getCartItems(cart_id) {
+  async getCartItems(session_id) {
     try {
       logger.info('Service: Cart - Call: getCartItems')
       const cartItems = await CartItems.findAll({
         where: {
-          cart_id: cart_id
+          session_id: session_id
         }
       })
       return cartItems;
@@ -122,12 +145,12 @@ class CartService {
       throw new ErrorHandler(error.statusCode, error.message);
     }
   }
-  async getCartTotal(cart_id) {
+  async getCartTotal(session_id) {
     try {
       logger.info('Service: Cart - Call: getCartTotal')
       const cartItems = await CartItems.findAll({
         where: {
-          cart_id: cart_id
+          session_id: session_id
         },
         include: [{
           model: ProductVariants,
@@ -144,12 +167,12 @@ class CartService {
     }
   }
 
-  async emptyCart(cart_id) {
+  async emptyCart(session_id) {
     try {
       logger.info('Service: Cart - Call: emptyCart')
       const cartItems = await CartItems.destroy({
         where: {
-          cart_id: cart_id
+          session_id: session_id
         }
       })
       return cartItems;
@@ -183,7 +206,6 @@ class CartService {
       throw new ErrorHandler(error.statusCode, error.message);
     }
   }
-  
 }
 
 

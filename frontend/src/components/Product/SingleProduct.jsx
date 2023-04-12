@@ -204,7 +204,8 @@ class VariantSelection extends React.Component {
       quantity: this.state.selected_quantity,
       price: this.state.price,
     }
-    // if guest user then add to local storage
+
+    
     if(!localStorage.getItem('user') || localStorage.getItem('user') == 'undefined' || localStorage.getItem('user') == 'null' || localStorage.getItem('user') == 'false') {
       let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
       cart.push(data);
