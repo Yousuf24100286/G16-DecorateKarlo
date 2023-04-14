@@ -9,6 +9,7 @@ import Home from './Home/Home.jsx';
 import Signup from './SignUp/SignUp.jsx';
 import SignIn from './SignIn/SignIn.jsx';
 import Account from './Account/Account';
+import Cart from './Cart/Cart';
 
 import Admin from './Admin/admin.jsx'
 import Header from './Header/Header.jsx';
@@ -42,6 +43,7 @@ class App extends React.Component {
               <Route path="product/" element={<AllProduct />} />
               <Route path="product/:id" element={<SingleProduct  />} />
               <Route path='/account' element={<Account />} />
+              <Route path='/cart' element={<Cart />} />
             </Routes>
           </Router>
         </div>

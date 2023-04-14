@@ -3,8 +3,11 @@ const logger = require('../utils/logger');
 const sequelize = new Sequelize(process.env.DEV_PGDATABASE_URL);
 const Products = require('../database/models/product')(sequelize, Sequelize.DataTypes)
 const ProductVariants = require('../database/models/product_variant')(sequelize, Sequelize.DataTypes)
+const ProductImages = require('../database/models/product_images')(sequelize, Sequelize.DataTypes)
 const Cart = require('../database/models/cart_session')(sequelize, Sequelize.DataTypes)
 const CartItems = require('../database/models/cart_item')(sequelize, Sequelize.DataTypes)
+
+
 
 const ErrorHandler = require('../middlewares/errorHandler').ErrorHandler;
 
@@ -14,12 +17,15 @@ class CartService {
     CartItems.sync();
     Products.sync();
     ProductVariants.sync();
+    ProductImages.sync();
     Cart.hasMany(CartItems, { foreignKey: 'session_id' });
     CartItems.belongsTo(Cart, { foreignKey: 'session_id' });
     CartItems.belongsTo(ProductVariants, { foreignKey: 'product_variant_id' });
     ProductVariants.hasMany(CartItems, { foreignKey: 'product_variant_id' });
     Products.hasMany(ProductVariants, { foreignKey: 'product_id' });
     ProductVariants.belongsTo(Products, { foreignKey: 'product_id' });
+    Products.hasMany(ProductImages, { foreignKey: 'product_id' });
+    ProductImages.belongsTo(Products, { foreignKey: 'product_id' });
   }
 
   async getCartByID(id) {
@@ -34,7 +40,13 @@ class CartService {
           include: [{
             model: ProductVariants,
             include: [{
-              model: Products
+              model: Products,
+              include: [{
+                model: ProductImages,
+                where: {
+                  main_image: true
+                }
+              }]
             }]
           }]
         }]
