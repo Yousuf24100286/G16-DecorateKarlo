@@ -20,7 +20,7 @@ class AddCategory extends React.Component {
       return;
     }
 
-    fetch("http://localhost:5000/api/category/add", {
+    fetch("http://localhost/api/category/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -29,7 +29,7 @@ class __SingleProduct__ extends React.Component {
   }
   componentDidMount() {
     this.setState({ loading: true });
-    fetch(`http://localhost:5000/api/product/id/${this.state.id}`)
+    fetch(`http://localhost/api/product/id/${this.state.id}`)
     .then((res) => res.json())
     .then(async (data) => {
       console.log(data);
@@ -44,7 +44,7 @@ class __SingleProduct__ extends React.Component {
       //this.setState({ loading: false });
     });
 
-    fetch(`http://localhost:5000/api/product/review/${this.state.id}`)
+    fetch(`http://localhost/api/product/review/${this.state.id}`)
     .then((res) => res.json())
     .then(async (data) => {
       console.log(data);
@@ -74,7 +74,7 @@ class __SingleProduct__ extends React.Component {
       review: this.state.review,
     }
     console.log(data);
-    const response = await fetch('http://localhost:5000/api/product/review/add', {
+    const response = await fetch('http://localhost/api/product/review/add', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -217,7 +217,7 @@ class VariantSelection extends React.Component {
     const cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
     
 
-    const response = await fetch('http://localhost:5000/api/cart/add/' + cart.id, {
+    const response = await fetch('http://localhost/api/cart/add/' + cart.id, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

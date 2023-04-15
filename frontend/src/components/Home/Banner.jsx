@@ -12,7 +12,7 @@ class Banner extends React.Component {
   componentDidMount() {
     
     // Uncomment when categories are added to the backend
-    fetch('http://localhost:5000/api/category/all')
+    fetch('http://localhost/api/category/all')
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

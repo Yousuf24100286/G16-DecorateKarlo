@@ -14,7 +14,7 @@ class AllProduct extends React.Component {
 
   componentDidMount() {
     this.setState({ loading: true });
-    fetch('http://localhost:5000/api/product')
+    fetch('http://localhost/api/product')
       .then((res) => res.json())
       .then((data) => {
         this.setState({ products: data, loading: false });

@@ -36,7 +36,7 @@ class AddProduct extends React.Component {
     }
   }
   componentDidMount() {
-    fetch("http://localhost:5000/api/category/all")
+    fetch("http://localhost/api/category/all")
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
@@ -57,7 +57,7 @@ class AddProduct extends React.Component {
 
     
 
-    fetch("http://localhost:5000/api/product/add", {
+    fetch("http://localhost/api/product/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -82,7 +82,7 @@ class AddProduct extends React.Component {
         formData.append("image", this.state.images);
 
         
-        axios.post("http://localhost:5000/api/product/images/add/"+ data.id, formData)
+        axios.post("http://localhost/api/product/images/add/"+ data.id, formData)
         .then((data) => {
           console.log(data);
           if(data.staus === 'error') {

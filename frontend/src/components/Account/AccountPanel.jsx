@@ -38,7 +38,7 @@ class AccountPanel extends React.Component {
     if(this.state.changed_information.length === 0) {
       alert("No information has been changed")
     } else {
-      fetch("http://localhost:5000/api/auth/update", {
+      fetch("http://localhost/api/auth/update", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -80,7 +80,7 @@ class AccountPanel extends React.Component {
       return;
     }
 
-    fetch("http://localhost:5000/api/auth/updatePassword", {
+    fetch("http://localhost/api/auth/updatePassword", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

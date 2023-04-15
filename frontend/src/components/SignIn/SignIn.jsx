@@ -27,7 +27,7 @@ class SignIn extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch("http://localhost:5000/api/auth/signin", {
+    fetch("http://localhost/api/auth/signin", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

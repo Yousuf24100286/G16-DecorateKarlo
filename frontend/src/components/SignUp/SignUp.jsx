@@ -37,7 +37,7 @@ class SignUp extends React.Component {
       return;
     }
 
-    fetch("http://localhost:5000/api/auth/signup", {
+    fetch("http://localhost/api/auth/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

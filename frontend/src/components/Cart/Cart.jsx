@@ -16,7 +16,7 @@ class Cart extends React.Component {
 
   async componentDidMount() {
     const cart = JSON.parse(localStorage.getItem('cart'));
-    fetch('http://localhost:5000/api/cart/'+cart.id, {
+    fetch('http://localhost/api/cart/'+cart.id, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
