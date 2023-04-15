@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 const logger = require('../utils/logger');
 const sequelize = new Sequelize(process.env.DEV_PGDATABASE_URL);
 const ProductImages = require('../database/models/product_images')(sequelize, Sequelize.DataTypes)
-const { uploadImage } = require('../utils/googleStorage');
+//const { uploadImage } = require('../utils/googleStorage');
 const { ErrorHandler } = require('../middlewares/errorHandler');
 
 

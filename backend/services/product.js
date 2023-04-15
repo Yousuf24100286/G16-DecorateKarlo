@@ -7,7 +7,7 @@ const ProductImages = require('../database/models/product_images')(sequelize, Se
 const ProductReview = require('../database/models/review')(sequelize, Sequelize.DataTypes)
 const Users = require('../database/models/users')(sequelize, Sequelize.DataTypes)
 
-const uploadImage = require('../utils/googleStorage');
+//const uploadImage = require('../utils/googleStorage');
 
 const { ErrorHandler } = require('../middlewares/errorHandler');
 
